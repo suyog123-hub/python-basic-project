@@ -1,51 +1,78 @@
-# Features: Add, View, Mark Complete, Delete
-print('--'*2, "here is the lsit" ,'--'*2 )
-to_do_list=[]
+print("=" * 40)
+print("        SIMPLE TO-DO LIST")
+print("=" * 40)
+
+todo_list = []
+
 while True:
-    print('''
-    1---> add in the to do list
-    2---> view the to do lsit
-    3---> mark the completed task in the to do lsit
-    4---> delete the to do list 
-    5--->exit
-          ''')
-    choice=int(input("enter your choice from (1-4)"))
-    if choice == 5:
-        print("exiting...")
-        break
-    elif choice==1:
-        add_items=input("enter the task you want to add in the to do list accordinf to time")
-        to_do_list.append(add_items)
-        print(f"'{add_items}' added successfully! in do to list")
-        
-    elif choice==2:
-        for i in to_do_list:
-            pass
-        print(f"your to do lsit are{str(to_do_list)}")
-
-    elif choice==3:
-        user_mark=input("enter the task you have completed")
-        if user_mark in to_do_list:
-            print(f' congratulation!!!you have sucessfully completed you{user_mark} task')
-            to_do_list.remove(user_mark)
-            if  not to_do_list:
-                    print(f' now you have no task to do right now')
-            else:
-                print(f'your remaining work  is{to_do_list}')
-
-    elif choice ==4:
-        user_delete=input("enter the task you want to delete from the to do lsist")
-        if user_delete in to_do_list:
-            to_do_list.remove(user_delete)
-            print(f'{user_delete} sucessfully delete from your  to-do-list')
-        else:
-            print(" it is not availble in your to do list")
-
-            
-
+    print("\n--- MENU ---")
+    print("1 → Add a task")
+    print("2 → View all tasks")
+    print("3 → Mark a task as completed")
+    print("4 → Delete a task")
+    print("5 → Exit")
     
+    try:
+        choice = int(input("Enter your choice (1-5): "))
+    except ValueError:
+        print("❌ Invalid input. Please enter a number.")
+        continue
 
-       
-        
+    if choice == 5:
+        print("Exiting... Goodbye!")
+        break
 
+    elif choice == 1:
+        task = input("Enter the task you want to add: ").strip()
+        if task:
+            todo_list.append(task)
+            print(f"✅ '{task}' added successfully!")
+        else:
+            print("❌ Task cannot be empty.")
 
+    elif choice == 2:
+        if not todo_list:
+            print("📭 Your to-do list is empty.")
+        else:
+            print("\n📋 Your tasks:")
+            for idx, task in enumerate(todo_list, start=1):
+                print(f"   {idx}. {task}")
+
+    elif choice == 3:
+        if not todo_list:
+            print("📭 Your list is empty. Nothing to mark as completed.")
+            continue
+        print("\nTasks:")
+        for idx, task in enumerate(todo_list, start=1):
+            print(f"   {idx}. {task}")
+        try:
+            task_num = int(input("Enter the number of the completed task: "))
+            if 1 <= task_num <= len(todo_list):
+                completed = todo_list.pop(task_num - 1)
+                print(f"🎉 Congratulations! You completed '{completed}'.")
+                if not todo_list:
+                    print("🎯 You have no pending tasks. Great job!")
+            else:
+                print("❌ Invalid task number.")
+        except ValueError:
+            print("❌ Please enter a valid number.")
+
+    elif choice == 4:
+        if not todo_list:
+            print("📭 Your list is empty. Nothing to delete.")
+            continue
+        print("\nTasks:")
+        for idx, task in enumerate(todo_list, start=1):
+            print(f"   {idx}. {task}")
+        try:
+            task_num = int(input("Enter the number of the task to delete: "))
+            if 1 <= task_num <= len(todo_list):
+                removed = todo_list.pop(task_num - 1)
+                print(f"🗑️ '{removed}' deleted successfully.")
+            else:
+                print("❌ Invalid task number.")
+        except ValueError:
+            print("❌ Please enter a valid number.")
+
+    else:
+        print("❌ Invalid choice. Please select 1-5.")
