@@ -1,51 +1,78 @@
 print("Welcome to ATM machine")
+BALANCE = 50000
+PIN = 1234
+MAX_ATTEMPTS = 5
+MAX_TRANSACTION = 20000
 
-balance = 50000
-pin = 1234
-pin_chance = 5
+attempts_left = MAX_ATTEMPTS
+balance = BALANCE
 
-while pin_chance > 0:
-    user = int(input("Enter your PIN code: "))
-    
-    if pin == user:
+while attempts_left > 0:
+    try:
+        user_pin = int(input("Enter your PIN code: "))
+    except ValueError:
+        print("Invalid input. Please enter numbers only.")
+        continue
+
+    if user_pin == PIN:
         print("PIN accepted. Welcome!\n")
-        print("1 --> Check your bank balance")
-        print("2 --> Withdraw amount")
-        print("3 --> Deposit amount")
-        print("4 --> Exit")
+        
+        while True:  
+            print("\n1 --> Check balance")
+            print("2 --> Withdraw amount")
+            print("3 --> Deposit amount")
+            print("4 --> Exit")
+            
+            try:
+                choice = int(input("Please choose an option (1-4): "))
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+                continue
 
-        choose = int(input("Please choose a valid option (1-4): "))
+            if choice == 1:
+                print(f"Your current balance is: ${balance}")
 
-        if choose == 1:
-            print("Your total amount is", balance)
+            elif choice == 2:
+                try:
+                    amount = int(input("Enter withdrawal amount: "))
+                except ValueError:
+                    print("Invalid amount.")
+                    continue
+                if amount <= 0:
+                    print("Amount must be positive.")
+                elif amount > balance:
+                    print("Insufficient funds.")
+                elif amount > MAX_TRANSACTION:
+                    print(f"Cannot withdraw more than ${MAX_TRANSACTION} per transaction.")
+                else:
+                    balance -= amount
+                    print(f"Withdrawal successful. New balance: ${balance}")
 
-        elif choose == 2:
-            withdraw_amount = int(input("Enter the withdrawal amount: "))
-            if withdraw_amount <= balance and withdraw_amount <= 20000:
-                balance -= withdraw_amount
-                print("Your remaining amount is", balance)
+            elif choice == 3:
+                try:
+                    amount = int(input("Enter deposit amount: "))
+                except ValueError:
+                    print("Invalid amount.")
+                    continue
+                if amount <= 0:
+                    print("Amount must be positive.")
+                elif amount > MAX_TRANSACTION:
+                    print(f"Cannot deposit more than ${MAX_TRANSACTION} per transaction.")
+                else:
+                    balance += amount
+                    print(f"Deposit successful. New balance: ${balance}")
+
+            elif choice == 4:
+                print("Thank you for using our ATM. Goodbye!")
+                break   
             else:
-                print("Invalid amount, please check it again.")
-                exit()
+                print("Invalid option. Please choose 1-4.")
 
-        elif choose == 3:
-            deposit_amount = int(input("Enter the deposit amount: "))
-            if deposit_amount <= 20000:
-                balance += deposit_amount
-                print("Your remaining amount is", balance)
-            else:
-                print("Invalid amount, please check it again.")
-                exit()
-
-        elif choose == 4:
-            print("Thanks for choosing us!")
-        else:
-            print("Invalid option please choose the correct option.")
-        break  
+        break   
 
     else:
-        pin_chance -= 1
-        if pin_chance == 0:
-            print("Invalid code — your system is blocked.")
+        attempts_left -= 1
+        if attempts_left == 0:
+            print("Too many incorrect attempts. Your card is blocked.")
         else:
-            print(f"Wrong PIN, try again. Attempts left: {pin_chance}")
+            print(f"Wrong PIN. Attempts left: {attempts_left}")
