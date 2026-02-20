@@ -2,9 +2,9 @@ while(True):
     password = input("Enter your password: ")
     special_characters = "@#&!_"
 
-    has_upper = any(ch.isupper() for ch in password)
-    has_digit = any(ch.isdigit() for ch in password)
-    has_special = any(ch in special_characters for ch in password)
+    has_upper = any(ch.isupper() for ch in password) 
+    has_digit = any(ch.isdigit() for ch in password) 
+    has_special = any(ch in special_characters for ch in password) 
 
     criteria_met = sum([has_upper, has_digit, has_special])
 
