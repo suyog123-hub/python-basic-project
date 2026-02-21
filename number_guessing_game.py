@@ -1,13 +1,8 @@
 import random
-
 print("Welcome to the Number Guessing Game! You have 3 attempts.")
-
-# Generate a random number between 0 and 3 (inclusive)
 comp_num = random.randint(0, 3)
-
-attempts_left = 3
+attempts_left = 5
 attempts_used = 0
-
 while attempts_left > 0:
     try:
         guess = int(input("Enter a number from 0 to 3: "))
@@ -17,16 +12,13 @@ while attempts_left > 0:
     except ValueError:
         print("Invalid input. Please enter a whole number.")
         continue
-
     attempts_used += 1
     attempts_left -= 1
-
     if guess < comp_num:
         print("Too low.")
     elif guess > comp_num:
         print("Too high.")
     else:
-        # Correct guess
         print(f"Congratulations! You guessed the number in {attempts_used} attempt(s).")
         break
 
