@@ -1,5 +1,5 @@
 print('----' * 4, 'CONTACT BOOK', '----' * 4)
-contact_list = {}
+contact_list = {} 
 while True:
     print('''
     1 --> View contacts
@@ -22,7 +22,7 @@ while True:
         else:
             print("\nYour contacts:")
             for name, number in contact_list.items():
-                print(f"   {name}: {number}")
+                print(f"{name}: {number}")
     elif choice == 2:
         name = input("Enter name: ").strip()
         if not name:
