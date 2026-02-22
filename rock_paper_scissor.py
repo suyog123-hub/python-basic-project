@@ -1,12 +1,18 @@
 import random
-user=input("enter your choice rock paper or scissor").upper()
-computer=random.choice(['R','P','S'])
-print(user)
-print(computer)
-if user== 'S' and computer =="p" or user== 'P' and computer =="R" or user== 'R' and computer =="S":
-    print("you win")
 
-elif (user== 'S' and computer =="S") or (user== 'P' and computer =="P")or (user== 'R' and computer =="R"):
-    print("its draw ")
+user = input("Enter your choice (R, P, S): ").upper()
+computer = random.choice(['R', 'P', 'S'])
+
+print("User:", user)
+print("Computer:", computer)
+
+if (user == 'S' and computer == "P") or \
+   (user == 'P' and computer == "R") or \
+   (user == 'R' and computer == "S"):
+    print("You win")
+
+elif user == computer:
+    print("It's a draw")
+
 else:
-    print('you lose')
+    print("You lose")
