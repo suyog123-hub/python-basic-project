@@ -1,9 +1,9 @@
-n=int(input("enter the number of disk"))
-if n==1:
-    print("the total number of step is 1")
-elif n==0:
-    print("invalid choice put the number greater than 0")
-    exit()
+n = int(input("Enter the number of disks: "))
+
+if n == 0:
+    print("Invalid choice. Enter a number greater than 0.")
+elif n == 1:
+    print("The total number of steps is 1")
 else:
-    s=((n**2)-1)
-    print("the total number of step to bring the disk to destination is",s)
+    s = (2 ** n) - 1
+    print("The total number of steps to move the disks is", s)
