@@ -1,4 +1,4 @@
-print("🧮 SIMPLE CALCULATOR")
+print(" SIMPLE CALCULATOR")
 
 while True:
     print("\n1.Add  2.Subtract  3.Multiply  4.Divide  5.Exit")
@@ -21,6 +21,6 @@ while True:
         if num2 != 0:
             print("Result:", num1 / num2)
         else:
-            print("❌ Cannot divide by zero")
+            print("Cannot divide by zero")
     else:
-        print("❌ Invalid choice")
+        print("Invalid choice")
