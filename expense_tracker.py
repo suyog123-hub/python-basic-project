@@ -11,7 +11,7 @@ while True:
 
     elif choice == "2":
         total = sum(e["amount"] for e in expenses)
-        print("Total Spent:", total)
+        print(f"Total Spent:  {total}")
 
     elif choice == "3":
         break
