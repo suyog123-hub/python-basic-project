@@ -5,3 +5,5 @@ while True:
     if word.lower() == 'quit':
         break
     print(f"Reversed: {word[::-1]}")
+    print(f"Length: {len(word)} letters")
+    print(f"Uppercase: {word.upper()}")
