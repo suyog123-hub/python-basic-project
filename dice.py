@@ -1,6 +1,6 @@
-import random
+import random 
 
-print("🎲 DICE ROLLER 🎲")
+print("🎲🔥 DICE ROLLER 🎲🔥")
 while True:
     input("Press Enter to roll (q to quit)")
     dice = random.randint(1, 6)
